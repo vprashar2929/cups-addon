@@ -5,6 +5,8 @@ mkdir -p /data/cups/cache
 mkdir -p /data/cups/logs
 mkdir -p /data/cups/state
 mkdir -p /data/cups/config
+mkdir -p /data/cups/config/ppd
+mkdir -p /data/cups/config/ssl
 
 # Set proper permissions
 chown -R root:lp /data/cups
@@ -65,6 +67,8 @@ EOL
 # Create a symlink from the default config location to our persistent location
 ln -sf /data/cups/config/cupsd.conf /etc/cups/cupsd.conf
 ln -sf /data/cups/config/printers.conf /etc/cups/printers.conf
+ln -sf /data/cups/config/ppd /etc/cups/ppd
+ln -sf /data/cups/config/ssl /etc/cups/ssl
 
 # Start CUPS service
 /usr/sbin/cupsd -f
