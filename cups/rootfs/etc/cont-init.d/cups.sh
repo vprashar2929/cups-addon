@@ -18,7 +18,7 @@ mkdir -p /etc/cups
 # Basic CUPS configuration without admin authentication
 cat > /data/cups/config/cupsd.conf << EOL
 # Listen on all interfaces (IPv4 and IPv6)
-Port 631
+Port 8631
 
 # Accept requests with any hostname/IP
 ServerAlias *

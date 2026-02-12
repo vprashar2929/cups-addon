@@ -17,9 +17,9 @@ map:
   - share:rw
 init: false
 ports:
-  631/tcp: 631
+  8631/tcp: 8631
 ports_description:
-  631/tcp: CUPS web interface and printing port
+  8631/tcp: CUPS web interface and printing port
 options:
   admin_username: "admin"
   admin_password: "admin"
