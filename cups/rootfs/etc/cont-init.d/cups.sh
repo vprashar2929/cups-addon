@@ -23,48 +23,42 @@ Port 631
 # Accept requests with any hostname/IP
 ServerAlias *
 
-# Allow access from local network
-<Location />
-  Order allow,deny
-  Allow localhost
-  Allow 10.0.0.0/8
-  Allow 172.16.0.0/12
-  Allow 192.168.0.0/16
-</Location>
-
-# Admin access (no authentication)
-<Location /admin>
-  Order allow,deny
-  Allow localhost
-  Allow 10.0.0.0/8
-  Allow 172.16.0.0/12
-  Allow 192.168.0.0/16
-</Location>
-
-# Job management permissions
-<Location /jobs>
-  Order allow,deny
-  Allow localhost
-  Allow 10.0.0.0/8
-  Allow 172.16.0.0/12
-  Allow 192.168.0.0/16
-</Location>
-
-<Limit Send-Document Send-URI Hold-Job Release-Job Restart-Job Purge-Jobs Set-Job-Attributes Create-Job-Subscription Renew-Subscription Cancel-Subscription Get-Notifications Reprocess-Job Cancel-Current-Job Suspend-Current-Job Resume-Job Cancel-My-Jobs Close-Job CUPS-Move-Job CUPS-Get-Document>
-  Order allow,deny
-  Allow localhost
-  Allow 10.0.0.0/8
-  Allow 172.16.0.0/12
-  Allow 192.168.0.0/16
-</Limit>
-
 # Enable web interface
 WebInterface Yes
 
 # Default settings
 DefaultAuthType None
+Browsing On
+BrowseLocalProtocols dnssd
 JobSheets none,none
 PreserveJobHistory No
+
+# Allow access from anywhere
+<Location />
+  Order allow,deny
+  Allow all
+</Location>
+
+<Location /admin>
+  Order allow,deny
+  Allow all
+</Location>
+
+<Location /admin/conf>
+  Order allow,deny
+  Allow all
+</Location>
+
+<Location /admin/log>
+  Order allow,deny
+  Allow all
+</Location>
+
+<Policy default>
+  <Limit All>
+    Order deny,allow
+  </Limit>
+</Policy>
 EOL
 
 # Create a symlink from the default config location to our persistent location
